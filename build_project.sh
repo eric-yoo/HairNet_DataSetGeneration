@@ -1,0 +1,2 @@
+cd Hair_generate_convdata_and_imgs
+build.sh
