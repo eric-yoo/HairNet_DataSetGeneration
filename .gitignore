@@ -2,3 +2,5 @@ blend_hairs
 blend_hairs_convdata
 Hair_generate_convdata_and_imgs/build
 OpenMesh-6.3
+Hair_generate_convdata_and_imgs/cmake_install.cmake
+Hair_generate_convdata_and_imgs/CMakeLists.txt
