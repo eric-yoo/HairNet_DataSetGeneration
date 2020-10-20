@@ -20,13 +20,13 @@ find_package( OpenCV REQUIRED )
 # On Linux this can be found automatically with pkg-config;
 # see http://stackoverflow.com/questions/6889264/cmake-flags-for-opengl-using-glew-and-glfw, for instance.
 
-#set(GLFW_INCLUDE_PATH "" CACHE PATH "The directory that contains GL/glfw.h" )
-#set(GLFW_LIBRARY "" CACHE FILEPATH "libglfw.a or glfw.lib" )
+#set(GLFW3_INCLUDE_PATH "" CACHE PATH "/usr/include/GLFW/glfw.h" )
+#set(GLFW3_LIBRARY "" CACHE FILEPATH "libglfw.a or glfw.lib" )
 
-#set(GLEW_INCLUDE_PATH "" CACHE PATH "The directory that contains GL/glew.h" )
+#set(GLEW_INCLUDE_PATH "" CACHE PATH "/usr/include/GL/glew.h" )
 #set(GLEW_LIBRARY "" CACHE FILEPATH "libglew.a or glew.lib" )
 
-#set(GLM_INCLUDE_PATH "" CACHE PATH "The directory that contains glm/glm.hpp" )
+#set(GLM_INCLUDE_PATH "" CACHE PATH "/usr/include/glm/glm.hpp" )
 
 include_directories(
         ${GLFW3_INCLUDE_PATH}
@@ -34,7 +34,7 @@ include_directories(
         ${GLM_INCLUDE_PATH}
         ${OPENGL_INCLUDE_DIR}
         #        ${PCL_INCLUDE_DIRS}
-        /home/yi/OpenMesh-6.3/src
+        /home/eric/OpenMesh-6.3/src
 )
 
 #link_directories(${PCL_LIBRARY_DIRS})
@@ -43,12 +43,14 @@ include_directories(
 
 add_executable(Hair_generate_convdata_and_imgs ${SOURCE_FILES} )
 
+message("XXXXXX ${GLEW_LIBRARY} ${GLEW_LIBRARIES}")
+
 target_link_libraries(Hair_generate_convdata_and_imgs
         ${OPENGL_LIBRARY} # filled by "find_package(OpenGL REQUIRED)"
         ${GLFW3_LIBRARY}
-        ${GLEW_LIBRARY}
-        /home/yi/OpenMesh-6.3/build/Build/lib/libOpenMeshCore.so
-        /home/yi/OpenMesh-6.3/build/Build/lib/libOpenMeshTools.so
+        GLEW
+        /home/eric/OpenMesh-6.3/build/Build/lib/libOpenMeshCore.so
+        /home/eric/OpenMesh-6.3/build/Build/lib/libOpenMeshTools.so
         ${OpenCV_LIBS}
         #        ${PCL_COMMON_LIBRARIES}
         #        ${PCL_IO_LIBRARIES}

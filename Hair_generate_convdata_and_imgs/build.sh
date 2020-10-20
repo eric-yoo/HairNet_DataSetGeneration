@@ -1,4 +1,4 @@
 rm -r build
 mkdir build
 cd build
-cmake .. && make
+cmake .. && make VERBOSE=1

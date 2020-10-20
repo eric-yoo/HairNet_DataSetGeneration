@@ -7,17 +7,18 @@
 
 
 
-#include <iostream>
+
 #include <stdarg.h>
 #include "hair/PiecewiseStrands.h"
 //#include "hair/XForm.h"
 #include "TrainingDataGenerator.h"
 #include <stdio.h>
 
-#include "Renderer.h"
+
+#include <iostream>
 #include <GLFW/glfw3.h>
 #include <thread>
-
+#include "Renderer.h"
 #include <dirent.h>
 #include <sys/stat.h>
 
@@ -31,7 +32,7 @@ string fragmentshader_fn = "../SimpleFragmentShader.fragmentshader";
 string intToStrLen5(int i)
 {
     string s;
-    char t[256];
+    char t[128];
     snprintf(t, 10, "%05d",i);
     //sprintf_s(t, "%05d", i);
     s = t;
@@ -132,7 +133,7 @@ void visualize_and_save_hair_orient(string hair_folder, string hair_convdata_fol
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 
-    GLFWwindow* window = glfwCreateWindow(256, 256, "OpenGL", nullptr, nullptr); // Windowed
+    GLFWwindow* window = glfwCreateWindow(128, 128, "OpenGL", nullptr, nullptr); // Windowed
 
 
     glfwMakeContextCurrent(window);
@@ -244,12 +245,12 @@ void visualize_and_save_hair_orient(string hair_folder, string hair_convdata_fol
 
             glfwSwapBuffers(window);
 
-            glm::vec3 eye_pos = glm::vec3(0,0,1.3);
+            glm::vec3 eye_pos = glm::vec3(0,0,0.65);
             glm::vec3 look_pos=glm::vec3(0,0,-1);
             glm::vec3 head_up = glm::vec3(0,1,0);
 
             float rotation_head_x = RandomFloat(-15,15)/180.0*3.1415926585;
-            float rotation_head_y = RandomFloat(-90,90)/180.0*3.1415926585;
+            float rotation_head_y = RandomFloat(-20,20)/180.0*3.1415926585;
             float rotation_head_z = RandomFloat(-15,15)/180.0*3.1415926585;
             glm::vec3 rotation_head_vector =  glm::vec3(rotation_head_x, rotation_head_z, rotation_head_y);
 
@@ -291,10 +292,10 @@ void visualize_and_save_hair_orient(string hair_folder, string hair_convdata_fol
 
             string orient_fn = orient_folder + hair_name + "_v" + to_string(view);
 
-            renderer.savecurrentImg(orient_fn, 256, 256);
-            //renderer.savecurrentDepthImg(orient_folder+hair_name + "_v" + to_string(view)+"_depth.png" ,256,256);
-            //renderer.savecurrentDepthImg(orient_folder+hair_name + "_v" + to_string(view)+"_depth2.png" ,256,256, hair_convdata);
-            hg.write_hairconv_visibility_map(hair_convdata, MVP, model_matrix,orient_folder+hair_name + "_v" + to_string(view)+".vismap" );
+            renderer.savecurrentImg(orient_fn, 128, 128);
+            //renderer.savecurrentDepthImg(orient_folder+hair_name + "_v" + to_string(view)+"_depth.png" ,128,128);
+            //renderer.savecurrentDepthImg(orient_folder+hair_name + "_v" + to_string(view)+"_depth2.png" ,128,128, hair_convdata);
+            // hg.write_hairconv_visibility_map(hair_convdata, MVP, model_matrix,orient_folder+hair_name + "_v" + to_string(view)+".vismap" );
 
             //glClearBufferData(GL_ARRAY_BUFFER,GL_RGB,GL_RGB,GL_FLOAT,&vertexbuffer);
             //glClearBufferData(GL_ARRAY_BUFFER,GL_RGB,GL_RGB,GL_FLOAT,&colorbuffer);
@@ -327,7 +328,7 @@ int main(int argc, char**argv) {
 
 
 
-    generate_trainingData(hair_folder, convdata_folder, map_roots_fn);
+    // generate_trainingData(hsair_folder, convdata_folder, map_roots_fn);
 
 
     string orient_img_folder=argv[4];//"/home/yi/Documents/Hair_clean/data_generation/blend_hairs_imgs/";

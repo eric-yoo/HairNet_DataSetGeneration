@@ -6,6 +6,7 @@
 
 
 
+
 #include <iostream>
 #include <stdarg.h>
 #include "hair/PiecewiseStrands.h"
@@ -13,6 +14,7 @@
 
 #include <stdio.h>
 //#include <windows.h>
+
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -24,7 +26,7 @@
 
 #include <fstream>
 #include <iostream>
-
+#include <random>
 // -------------------- OpenMesh
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
@@ -745,7 +747,7 @@ public:
         cv::Mat orientImg_png;
         orientImg255_exr.convertTo(orientImg_png, CV_8UC3);
 
-        cv::imwrite(filename+".exr", orientImgFlip_exr);
+        // cv::imwrite(filename+".exr", orientImgFlip_exr);
         cv::imwrite(filename+".png", orientImg_png);
 
 
